@@ -31,12 +31,11 @@ app.post('/api/articles', (req, res) => {
 app.get('/api/test', (req, res) => {
   res.status(200).json({ message: 'Test route is working' });
 });
-// Route À Propos
+
 app.get('/about', (req, res) => {
   res.status(200).send('<h2>À propos : Ceci est une API Express de démonstration.</h2>');
 });
 
-// Route utilisateurs factices
 const users = [
   { id: 1, name: 'Alice', email: 'alice@email.com' },
   { id: 2, name: 'Bob', email: 'bob@email.com' },
@@ -46,7 +45,6 @@ app.get('/api/users', (req, res) => {
   res.status(200).json(users);
 });
 
-// Route contact POST
 app.post('/contact', (req, res) => {
   const { email, message } = req.body;
   if (!email || !message) {
