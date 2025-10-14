@@ -3,11 +3,17 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+
+const articleRoutes = require('./routes/routes');
+
 app.use(express.json());
 
 app.get('/',(req, res) => {
    res.status(200).send('<h1>Server is running</h1>');
 });
+
+app.use('/api/articles', articleRoutes);
 
 app.get('/api', (req, res) => { res.status(200).json({ message: 'API is working' }); });
 
@@ -23,14 +29,14 @@ app.get('/api/fournisseurs', (req, res) => {
   res.json(filtres);
 });
 
-app.post('/api/articles', (req, res) => {
-    const articlesData = req.body;
-    console.log(articlesData); 
-    res.status(201).json({ message: 'Articles received', article:{id:Date.now() , ...articlesData} });
-});
-app.get('/api/test', (req, res) => {
-  res.status(200).json({ message: 'Test route is working' });
-});
+// app.post('/api/articles', (req, res) => {
+//     const articlesData = req.body;
+//     console.log(articlesData); 
+//     res.status(201).json({ message: 'Articles received', article:{id:Date.now() , ...articlesData} });
+// });
+// app.get('/api/test', (req, res) => {
+//   res.status(200).json({ message: 'Test route is working' });
+// });
 
 app.get('/about', (req, res) => {
   res.status(200).send('<h2>À propos : Ceci est une API Express de démonstration.</h2>');
